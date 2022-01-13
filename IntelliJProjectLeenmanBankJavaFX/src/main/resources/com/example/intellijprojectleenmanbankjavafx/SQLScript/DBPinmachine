@@ -1,0 +1,52 @@
+SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
+
+-- -----------------------------------------------------
+-- Schema pinmachineDB
+-- -----------------------------------------------------
+DROP SCHEMA IF EXISTS `pinmachineDB` ;
+
+-- -----------------------------------------------------
+-- Schema pinmachineDB
+-- -----------------------------------------------------
+CREATE SCHEMA IF NOT EXISTS `pinmachineDB` DEFAULT CHARACTER SET utf8 ;
+USE `pinmachineDB` ;
+
+-- -----------------------------------------------------
+-- Table `pinmachineDB`.`pinmachineReferenceID`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `pinmachineDB`.`pinmachineReferenceID` (
+  `reference` BIGINT(20) NOT NULL,
+  PRIMARY KEY (`reference`))
+ENGINE = InnoDB;
+
+INSERT INTO `pinmachinedb`.`pinmachinereferenceid` (`reference`) VALUES ('1234567890');
+
+
+-- -----------------------------------------------------
+-- Table `pinmachineDB`.`transactions`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `pinmachineDB`.`transactions` (
+  `id` BIGINT(20) NOT NULL,
+  `account` VARCHAR(45) NOT NULL,
+  `amount` DECIMAL(10,2) NOT NULL,
+  `date` VARCHAR(45) NOT NULL,
+  `time` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+INSERT INTO `transactions` VALUES
+(1111111,'123456',9.99,'2022-01-09','09:45'),
+(1111112,'123456',9.00,'2022-01-09','09:58'),
+(1111115,'123765',16.50,'2022-01-09','11:45'),
+(1111118,'546372',13.00,'2022-01-09','14:23'),
+(1111135,'123765',99.99,'2022-01-09','16:59');
+
+CREATE USER 'pinmachineUser' IDENTIFIED BY 'Pinautomaatgebruiker1';
+
+GRANT ALL ON `pinmachineDB`.* TO 'pinmachineUser';
+
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
